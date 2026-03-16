@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI Specification — AI CLI</title>
+  <meta name="description" content="Technical specification for the CLI assistant. Core capabilities, model routing, runtime, and configuration.">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon">$</div>
+        <span>AI CLI</span>
+      </a>
+      
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="cli-spec.html" class="active">CLI Spec</a></li>
+          <li><a href="vision.html">Vision</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+        </ul>
+        <a href="../index.html#waitlist" class="btn btn-primary">Join Waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>CLI Specification</h1>
+      <p>A precise reference for what the CLI does, how it routes requests, and how to configure it for your workflow. This is a living spec—it evolves with each release.</p>
+      <span class="version-badge">v0.1 — Coming Soon</span>
+    </div>
+  </section>
+
+  <!-- Core Capabilities -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Core Capabilities</h2>
+      
+      <div class="grid-2 mt-xl">
+        <div class="capability-card fade-in">
+          <h3>Generate</h3>
+          <p>Produces idiomatic code from natural language descriptions. Handles file creation, function stubs, full modules, and test scaffolding.</p>
+          <code>ai "create a React hook for debounced search"</code>
+          <p class="mt-sm text-muted" style="font-size: 12px;">Best: Small-medium model (fast, precise)</p>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="100">
+          <h3>Debug</h3>
+          <p>Analyzes error messages, stack traces, and source context to propose fixes. Explains the root cause in developer-friendly terms.</p>
+          <code>ai "debug: TypeError Cannot read property 'id' of undefined"</code>
+          <p class="mt-sm text-muted" style="font-size: 12px;">Best: Medium-large model (reasoning depth)</p>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="200">
+          <h3>Document</h3>
+          <p>Generates or updates documentation—README, API docs, JSDoc, docstrings—matching your project's existing style.</p>
+          <code>ai "write a README for this service"</code>
+          <p class="mt-sm text-muted" style="font-size: 12px;">Best: Medium model (style awareness)</p>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="300">
+          <h3>Architect</h3>
+          <p>Proposes system designs, component structures, data flows, and implementation plans for complex features.</p>
+          <code>ai "design a message queue architecture for this microservices app"</code>
+          <p class="mt-sm text-muted" style="font-size: 12px;">Best: Large model (deep reasoning)</p>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="400">
+          <h3>Review</h3>
+          <p>Performs code review on diffs or files. Flags issues, suggests improvements, checks for security anti-patterns.</p>
+          <code>ai "review: ./src/auth/login.ts"</code>
+          <p class="mt-sm text-muted" style="font-size: 12px;">Best: Medium-large model</p>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="500">
+          <h3>Explain</h3>
+          <p>Breaks down complex code, error messages, or architectural decisions into plain English.</p>
+          <code>ai "explain this regex pattern"</code>
+          <p class="mt-sm text-muted" style="font-size: 12px;">Best: Small model (fast Q&A)</p>
+        </div>
+      </div>
+      
+      <div class="mt-xl">
+        <h3 style="margin-bottom: var(--space-md);">Workspace Context</h3>
+        <p>The CLI automatically indexes your project on invocation. It reads your dependency files (<code style="color: var(--accent-gold);">package.json</code>, <code style="color: var(--accent-gold);">Cargo.toml</code>, <code style="color: var(--accent-gold);">requirements.txt</code>), git metadata, config files (<code style="color: var(--accent-gold);">.eslintrc</code>, <code style="color: var(--accent-gold);">tsconfig.json</code>, <code style="color: var(--accent-gold);">docker-compose.yml</code>), and file tree structure. This context is summarized and prepended to every prompt. You control what gets included via the config file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Model Routing -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Model Routing</h2>
+      <p class="section-subtitle">The CLI doesn't use a single model for everything. It routes each request based on three criteria: task type (generation vs. reasoning vs. Q&A), latency tolerance (fast answers vs. deep analysis), and sensitivity (public code vs. proprietary logic). You can override these defaults in your config.</p>
+      
+      <!-- Routing Diagram -->
+      <div class="routing-diagram mt-xl">
+        <div class="routing-step">
+          <div class="routing-box">User Prompt</div>
+        </div>
+        <div class="routing-arrow">&rarr;</div>
+        <div class="routing-step">
+          <div class="routing-box" style="border-color: var(--accent-gold);">Router</div>
+        </div>
+        <div class="routing-arrow">&rarr;</div>
+        <div class="routing-step">
+          <div class="routing-box">Decision Engine</div>
+        </div>
+        <div class="routing-arrow">&rarr;</div>
+        <div class="routing-step">
+          <div class="routing-box">Model Selection</div>
+        </div>
+      </div>
+      
+      <!-- Routing Examples Table -->
+      <div class="mt-xl">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 1px solid rgba(245, 166, 35, 0.3);">
+              <th style="text-align: left; padding: var(--space-md); color: var(--accent-gold); font-size: 14px;">Scenario</th>
+              <th style="text-align: left; padding: var(--space-md); color: var(--accent-gold); font-size: 14px;">Routing Logic</th>
+              <th style="text-align: left; padding: var(--space-md); color: var(--accent-gold); font-size: 14px;">Model Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(245, 166, 35, 0.1);">
+              <td style="padding: var(--space-md);">Quick question about a function</td>
+              <td style="padding: var(--space-md);">Task = Q&A, Low latency &rarr; Fast model</td>
+              <td style="padding: var(--space-md); color: var(--accent-neon);">ai-small (hosted)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(245, 166, 35, 0.1);">
+              <td style="padding: var(--space-md);">Refactor a 500-line module</td>
+              <td style="padding: var(--space-md);">Task = Generation, Medium latency &rarr; Medium model</td>
+              <td style="padding: var(--space-md); color: var(--accent-neon);">ai-medium (hosted or self-hosted)</td>
+            </tr>
+            <tr>
+              <td style="padding: var(--space-md);">Security-critical auth code review</td>
+              <td style="padding: var(--space-md);">Sensitivity = High &rarr; Self-hosted model only</td>
+              <td style="padding: var(--space-md); color: var(--accent-neon);">ai-secure (self-hosted)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Runtime & Integrations -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Runtime & Integrations</h2>
+      <p class="section-subtitle">The CLI runs locally on macOS, Linux, and WSL. Editor integrations and CI hooks extend its reach into your existing workflow—no rewrites required.</p>
+      
+      <div class="grid-3 mt-xl">
+        <div class="card fade-in">
+          <h3 style="color: var(--accent-gold); margin-bottom: var(--space-sm);">macOS</h3>
+          <p style="font-size: 14px;">Supported — Universal binary, Apple Silicon optimized</p>
+        </div>
+        
+        <div class="card fade-in" data-delay="100">
+          <h3 style="color: var(--accent-gold); margin-bottom: var(--space-sm);">Linux</h3>
+          <p style="font-size: 14px;">Supported — Debian, RPM, AUR packages</p>
+        </div>
+        
+        <div class="card fade-in" data-delay="200">
+          <h3 style="color: var(--accent-gold); margin-bottom: var(--space-sm);">WSL</h3>
+          <p style="font-size: 14px;">Supported — Full parity with Linux build</p>
+        </div>
+      </div>
+      
+      <h3 class="mt-xl mb-lg">Integrations</h3>
+      <div class="grid-4">
+        <div class="card fade-in" style="text-align: center;">
+          <div style="font-size: 32px; margin-bottom: var(--space-sm);">&#128421;</div>
+          <h3 style="font-size: 16px;">Neovim</h3>
+          <p style="font-size: 13px;">Native plugin that pipes buffer content to the CLI and inserts responses.</p>
+        </div>
+        
+        <div class="card fade-in" data-delay="100" style="text-align: center;">
+          <div style="font-size: 32px; margin-bottom: var(--space-sm);">&#128426;</div>
+          <h3 style="font-size: 16px;">VS Code</h3>
+          <p style="font-size: 13px;">Extension that adds a sidebar panel for CLI interaction.</p>
+        </div>
+        
+        <div class="card fade-in" data-delay="200" style="text-align: center;">
+          <div style="font-size: 32px; margin-bottom: var(--space-sm);">&#128025;</div>
+          <h3 style="font-size: 16px;">GitHub Actions</h3>
+          <p style="font-size: 13px;">Action for automated code review on PRs.</p>
+        </div>
+        
+        <div class="card fade-in" data-delay="300" style="text-align: center;">
+          <div style="font-size: 32px; margin-bottom: var(--space-sm);">&#128008;</div>
+          <h3 style="font-size: 16px;">GitLab CI</h3>
+          <p style="font-size: 13px;">CI template for running documentation generation on merge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configuration -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Configuration</h2>
+      <p class="section-subtitle">A local <code style="color: var(--accent-gold);">ai.toml</code> file in your project root controls everything—model preferences, context paths, routing rules, and style guidelines. It lives in your repo so your team shares the same config.</p>
+      
+      <div class="config-block mt-xl" style="max-width: 700px; margin: 0 auto;">
+        <span class="comment"># ~/.ai/config.toml (global)</span><br><br>
+        <span class="key">[defaults]</span><br>
+        &nbsp;&nbsp;<span class="key">model</span> = <span class="value">"balanced"</span> <span class="comment"># fast | balanced | deep</span><br>
+        &nbsp;&nbsp;<span class="key">self_hosted_only</span> = <span class="value">false</span> <span class="comment"># true forces self-hosted routes</span><br><br>
+        <span class="key">[context]</span><br>
+        &nbsp;&nbsp;<span class="key">include</span> = [<span class="value">"src/"</span>, <span class="value">"tests/"</span>]<br>
+        &nbsp;&nbsp;<span class="key">exclude</span> = [<span class="value">"node_modules/"</span>, <span class="value">"dist/"</span>, <span class="value">".git/"</span>]<br>
+        &nbsp;&nbsp;<span class="key">max_files</span> = <span class="value">50</span><br><br>
+        <span class="key">[models]</span><br>
+        &nbsp;&nbsp;<span class="key">hosted</span> = [<span class="value">"openai"</span>, <span class="value">"gemini"</span>]<br>
+        &nbsp;&nbsp;<span class="key">self_hosted</span> = [<span class="value">"qwen-coder"</span>, <span class="value">"glm-4"</span>, <span class="value">"deepseek"</span>]<br><br>
+        <span class="key">[security]</span><br>
+        &nbsp;&nbsp;<span class="key">audit_log</span> = <span class="value">true</span><br>
+        &nbsp;&nbsp;<span class="key">prompt_log</span> = <span class="value">"local-only"</span>
+      </div>
+      
+      <p class="mt-lg text-center text-muted" style="font-size: 13px;">Example config — your actual config will vary.</p>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready to try the CLI?</h2>
+      <p>Join the waitlist to get early access and 2 months free at launch.</p>
+      <a href="../index.html#waitlist" class="btn btn-primary btn-large">Join the Waitlist</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <div class="logo-icon">$</div>
+            <span>AI CLI</span>
+          </a>
+          <p>Sovereign AI infrastructure for developers who ship.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="cli-spec.html">CLI Spec</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#integrations">Integrations</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Vision</h4>
+          <ul>
+            <li><a href="vision.html">Roadmap</a></li>
+            <li><a href="vision.html">Principles</a></li>
+            <li><a href="team.html">Research</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#terms">Terms</a></li>
+            <li><a href="#security">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>A developer-first tool. Privacy by design. No telemetry, no data leaves your infrastructure.</p>
+        <a href="../index.html#waitlist" class="btn btn-outline">Join Waitlist</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

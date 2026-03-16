@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Terminal. Your Models. Your AI. — CLI AI Assistant</title>
+  <meta name="description" content="A CLI assistant powered by open-source LLMs that you control. No vendor lock-in. No API rate limits. Sovereign, privacy-first coding infrastructure.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Particles Background -->
+  <div id="particles"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">$</div>
+        <span>AI CLI</span>
+      </a>
+      
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="pages/cli-spec.html">CLI Spec</a></li>
+          <li><a href="pages/vision.html">Vision</a></li>
+          <li><a href="pages/team.html">Team</a></li>
+          <li><a href="pages/roadmap.html">Roadmap</a></li>
+        </ul>
+        <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="glow" style="top: 20%; left: 50%; transform: translateX(-50%);"></div>
+    
+    <div class="hero-content">
+      <h1>Your Terminal. Your Models. Your AI.</h1>
+      <p class="hero-subtitle">
+        A CLI assistant powered by open-source LLMs that you control. No vendor lock-in. No API rate limits. Just sovereign, privacy-first coding infrastructure that lives where you work.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="#waitlist" class="btn btn-primary btn-large">Join the Waitlist — Get 2 Months Free</a>
+      </div>
+      <p class="hero-cta-note">Waitlist users receive 2 months of free access at launch. Non-waitlist users start directly on paid plans.</p>
+    </div>
+    
+    <!-- Terminal Mockup -->
+    <div class="terminal mt-2xl" style="max-width: 600px; width: 100%;">
+      <div class="terminal-header">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="terminal-prompt">~/dev/my-project $ </span><span class="terminal-command">ai "refactor this API endpoint for pagination"</span></div>
+        <div class="mt-md">
+          <span class="terminal-output typewriter-output" data-text="I'll analyze the endpoint structure and create a paginated version. Here's the refactored code..."></span><span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Sovereign AI Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title text-center">Why Sovereign AI Matters</h2>
+      
+      <div class="grid-2 mt-xl" style="align-items: start;">
+        <div>
+          <p>Relying on a single AI API vendor means your coding workflow is one outage, pricing change, or policy shift away from disruption. Every query sends your code—often your most valuable intellectual property—through third-party infrastructure you cannot inspect or audit.</p>
+          <p class="mt-md">Self-hosted open-source models change that equation. You decide which model runs where. You control the data flow. You optimize costs by running on your own GPU infrastructure, and you can swap or upgrade models without rewriting a single line of your workflow.</p>
+          <p class="mt-md">This isn't about rejecting AI. It's about owning the stack that powers your productivity.</p>
+        </div>
+        
+        <div>
+          <ul class="value-props">
+            <li>
+              <span class="value-props-icon">&#10003;</span>
+              <div>
+                <strong class="text-gold">No Lock-In</strong>
+                <p class="text-muted" style="font-size: 14px;">Route between OpenAI, Gemini, Qwen, GLM, DeepSeek, or your own fine-tuned models with a single config change.</p>
+              </div>
+            </li>
+            <li>
+              <span class="value-props-icon">&#10003;</span>
+              <div>
+                <strong class="text-gold">Data Privacy</strong>
+                <p class="text-muted" style="font-size: 14px;">Sensitive code, config, and architecture never leave infrastructure you control.</p>
+              </div>
+            </li>
+            <li>
+              <span class="value-props-icon">&#10003;</span>
+              <div>
+                <strong class="text-gold">Cost Control</strong>
+                <p class="text-muted" style="font-size: 14px;">Start with hosted APIs. Migrate to self-hosted as your team scales. Predictable infrastructure costs replace per-token metered billing.</p>
+              </div>
+            </li>
+            <li>
+              <span class="value-props-icon">&#10003;</span>
+              <div>
+                <strong class="text-gold">Full Observability</strong>
+                <p class="text-muted" style="font-size: 14px;">Log every prompt, every response, every routing decision. Know exactly what your AI is doing.</p>
+              </div>
+            </li>
+            <li>
+              <span class="value-props-icon">&#10003;</span>
+              <div>
+                <strong class="text-gold">Enterprise Ready</strong>
+                <p class="text-muted" style="font-size: 14px;">SSO, audit logs, on-prem deployment options. This is built for teams shipping real software.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What the CLI Can Do Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title text-center">What the CLI Can Do</h2>
+      <p class="section-subtitle text-center" style="margin: 0 auto;">The assistant reads your entire workspace—repo structure, git history, dependencies, config files—before answering. It understands the context of your project, not just the prompt you type.</p>
+      
+      <div class="grid-2 mt-xl">
+        <div class="capability-card fade-in">
+          <h3>Generate</h3>
+          <p>Describe what you need in plain English. The CLI outputs idiomatic code that matches your project's style, imports, and conventions.</p>
+          <code>ai "add a REST endpoint for user profile"</code>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="100">
+          <h3>Debug</h3>
+          <p>Paste an error or describe a failure. The CLI analyzes stack traces, relevant source files, and proposes fixes with explanation.</p>
+          <code>ai "why is this Promise.all failing?"</code>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="200">
+          <h3>Document</h3>
+          <p>Ask for API docs, README updates, or code comments. The CLI reads your existing docs style and maintains consistency.</p>
+          <code>ai "write docs for this module"</code>
+        </div>
+        
+        <div class="capability-card fade-in" data-delay="300">
+          <h3>Architect</h3>
+          <p>Describe a system requirement. The CLI proposes component diagrams, data flow, and implementation suggestions.</p>
+          <code>ai "design a caching layer for this service"</code>
+        </div>
+      </div>
+      
+      <div class="mt-xl text-center">
+        <p style="max-width: 600px; margin: 0 auto;">How workspace context works: When you invoke the CLI, it automatically indexes your current directory—reading <code style="color: var(--accent-gold);">package.json</code>, <code style="color: var(--accent-gold);">Cargo.toml</code>, <code style="color: var(--accent-gold);">pyproject.toml</code>, <code style="color: var(--accent-gold);">.git/</code>, <code style="color: var(--accent-gold);">docker-compose.yml</code>, and other config files. This context is injected into the prompt so the model understands your stack, naming conventions, and existing patterns. You can customize which files or directories are included or excluded via a local config file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist & Social Proof Strip -->
+  <section class="waitlist-banner" id="waitlist">
+    <div class="container">
+      <h3>Join the early access cohort.</h3>
+      <p>We're opening the waitlist to a limited number of teams. Early adopters shape the product through direct feedback and get 2 months of free access when we launch. This isn't a marketing list—it's a founding community.</p>
+      <p class="text-muted" style="font-size: 13px;">Built by developers who've shipped infrastructure at scale. Designed for teams who care about what runs under the hood.</p>
+      
+      <form class="mt-lg" style="max-width: 400px; margin: 0 auto;">
+        <div style="display: flex; gap: var(--space-sm);">
+          <input type="email" placeholder="your@email.com" required style="flex: 1; padding: var(--space-md); background: var(--bg-tertiary); border: 1px solid rgba(245, 166, 35, 0.3); border-radius: var(--border-radius-sm); color: var(--text-primary); font-size: 14px);">
+          <button type="submit" class="btn btn-primary">Join Waitlist</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Integrations Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title text-center">Your Stack. Your Models.</h2>
+      <p class="section-subtitle text-center" style="margin: 0 auto;">The CLI launches with support for OpenAI and Gemini APIs—so you can start immediately. As our self-hosted models come online, you'll be able to point the same CLI at Qwen, GLM, DeepSeek, or any open-source model running on your own GPU VMs. Same interface. Evolving backend. Full sovereignty.</p>
+      
+      <div class="integration-diagram mt-xl">
+        <div class="integration-node">
+          <div style="font-size: 32px; font-weight: 700; color: var(--accent-gold);">GPT</div>
+          <span>OpenAI</span>
+        </div>
+        
+        <div class="integration-node">
+          <div style="font-size: 32px; font-weight: 700; color: var(--accent-gold);">GEM</div>
+          <span>Gemini</span>
+        </div>
+        
+        <div class="integration-node center">
+          <div style="font-size: 24px; font-weight: 700; color: var(--accent-neon);">&#9881;</div>
+          <span>Router</span>
+        </div>
+        
+        <div class="integration-node">
+          <div style="font-size: 32px; font-weight: 700; color: var(--accent-gold);">Q</div>
+          <span>Qwen</span>
+        </div>
+        
+        <div class="integration-node">
+          <div style="font-size: 32px; font-weight: 700; color: var(--accent-gold);">D</div>
+          <span>DeepSeek</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">$</div>
+            <span>AI CLI</span>
+          </a>
+          <p>Sovereign AI infrastructure for developers who ship.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="pages/cli-spec.html">CLI Spec</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#integrations">Integrations</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Vision</h4>
+          <ul>
+            <li><a href="pages/vision.html">Roadmap</a></li>
+            <li><a href="pages/vision.html">Principles</a></li>
+            <li><a href="pages/team.html">Research</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="pages/team.html">Team</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#terms">Terms</a></li>
+            <li><a href="#security">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>A developer-first tool. Privacy by design. No telemetry, no data leaves your infrastructure.</p>
+        <a href="#waitlist" class="btn btn-outline">Join Waitlist</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
